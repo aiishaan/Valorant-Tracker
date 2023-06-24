@@ -1,0 +1,7 @@
+Team 1,10,1
+Team 2,5,2
+~
+realPlayer1,Player_1 T1,24,Team 1,Immortal 1,Neon,78.7,3.0
+realPlayer2,Player_2 T1,21,Team 1,Diamond 3,Raze,81.7,1.5
+realPlayer3,Player_3 T2,23,Team 2,Iron 1,Killjoy,42.3,0.7
+realPlayer4,Player_4 T2,18,Team 2,Silver 2,Yoru,95.6,5.5

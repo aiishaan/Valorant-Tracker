@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox fx:id="vBox" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main.MainController">
+    <children>
+        <MenuBar>
+            <menus>
+                <Menu mnemonicParsing="false" text="File">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#newFile" text="New" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" onAction="#loadFile" text="Load" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem fx:id="save" mnemonicParsing="false" onAction="#save" text="Save" visible="false" />
+                        <MenuItem fx:id="saveAs" mnemonicParsing="false" onAction="#saveAs" text="Save As" visible="false" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" onAction="#exitProgram" text="Exit" />
+                    </items>
+                </Menu>
+                <Menu fx:id="editMenu" mnemonicParsing="false" text="Edit" visible="false">
+                    <items>
+                        <MenuItem fx:id="autoSaveOption" mnemonicParsing="false" onAction="#autoSaveToggle" text="Auto Save: OFF" />
+                        <MenuItem mnemonicParsing="false" onAction="#loadDefault" text="Load Example Data" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#about" text="About" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+        <AnchorPane fx:id="titlePane" prefHeight="436.5" prefWidth="640.0">
+            <children>
+                <ImageView fx:id="titleImage" fitHeight="326.0" fitWidth="462.0" layoutX="89.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@Val-Logo.png" />
+                    </image>
+                </ImageView>
+                <Text fx:id="titleText" layoutX="122.0" layoutY="390.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TRACKER" textAlignment="CENTER">
+                    <font>
+                        <Font name="Tahoma Bold" size="78.0" />
+                    </font>
+                </Text>
+                <Button fx:id="argumentFile" layoutX="187.0" layoutY="406.0" mnemonicParsing="false" onAction="#loadArgs" text="Load File from Command LIne Arguments" visible="false" />
+            </children>
+        </AnchorPane>
+        <SplitPane fx:id="splitPane" dividerPositions="0.2760025062656641, 0.700501253132832" prefHeight="500.0" VBox.vgrow="ALWAYS">
+            <items>
+                <AnchorPane fx:id="leftPane" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                    <children>
+                        <Label layoutX="5.0" text="Master" textFill="#797070">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Label>
+                        <Button fx:id="teamButton" layoutX="53.0" layoutY="30.0" mnemonicParsing="false" onAction="#addTeam" text="Add a Team" />
+                        <Button fx:id="playerButton" layoutX="52.0" layoutY="63.0" mnemonicParsing="false" onAction="#addPlayer" text="Add a Player" />
+                        <Button fx:id="updateTeam" layoutX="36.0" layoutY="105.0" mnemonicParsing="false" onAction="#updateTeam" text="Update Team Data" />
+                        <Button fx:id="updatePlayer" layoutX="34.0" layoutY="139.0" mnemonicParsing="false" onAction="#updatePlayer" text="Update Player Data" />
+                        <ComboBox fx:id="playerPicker1" layoutX="33.0" layoutY="176.0" onAction="#playerSelected" prefHeight="26.0" prefWidth="118.0" promptText="Players" visible="false" />
+                        <ComboBox fx:id="teamPicker1" layoutX="33.0" layoutY="176.0" prefHeight="26.0" prefWidth="118.0" promptText="Teams" />
+                        <TextField fx:id="firstField" layoutX="18.0" layoutY="213.0" promptText="Team Name" />
+                        <TextField fx:id="secondField" layoutX="18.0" layoutY="249.0" promptText="Team Wins (Optional)" />
+                        <TextField fx:id="thirdField" layoutX="18.0" layoutY="286.0" promptText="Team Losses (Optional)" />
+                        <ComboBox fx:id="playerTeam" layoutX="18.0" layoutY="321.0" prefWidth="150.0" promptText="Player Team (Optional)" />
+                        <Group fx:id="playerUpdate" layoutX="18.0" layoutY="321.0">
+                            <children>
+                                <ComboBox fx:id="playerRank" layoutY="33.0" prefWidth="150.0" promptText="Player Rank (Optional)" />
+                                <ComboBox fx:id="playerAgent" layoutY="67.0" prefWidth="150.0" promptText="Player Agent (Optional)" />
+                                <TextField fx:id="playerHS" layoutY="101.0" prefHeight="26.0" prefWidth="65.0" promptText="HS % " />
+                                <TextField fx:id="playerRatio" layoutX="81.0" layoutY="101.0" prefHeight="26.0" prefWidth="66.0" promptText="W/L Ratio" />
+                            </children>
+                        </Group>
+                        <Button fx:id="addButton" layoutX="71.0" layoutY="458.0" mnemonicParsing="false" onAction="#add" text="Add!" />
+                    </children>
+                </AnchorPane>
+                <ScrollPane fx:id="scrollPane" prefHeight="200.0" prefWidth="200.0">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0">
+                            <children>
+                                <Label layoutX="3.0" text="View" textFill="#757070">
+                                    <font>
+                                        <Font size="18.0" />
+                                    </font>
+                                </Label>
+                                <Group fx:id="viewOptions" layoutX="52.0" layoutY="26.0">
+                                    <children>
+                                        <MenuButton mnemonicParsing="false" text="View Data">
+                                            <items>
+                                                <MenuItem mnemonicParsing="false" onAction="#viewAll" text="All Data" />
+                                                <MenuItem mnemonicParsing="false" onAction="#viewPlayers" text="All Players" />
+                                                <MenuItem mnemonicParsing="false" onAction="#viewTeams" text="All Teams" />
+                                            </items>
+                                        </MenuButton>
+                                        <MenuButton fx:id="viewOpt" layoutX="93.0" mnemonicParsing="false" text="Options">
+                                            <items>
+                                                <MenuItem fx:id="allTeams" mnemonicParsing="false" onAction="#viewPlayers" text="All Teams" />
+                                                <MenuItem mnemonicParsing="false" text="Action 2" />
+                                            </items>
+                                        </MenuButton>
+                                        <MenuButton fx:id="viewSort" layoutX="177.0" mnemonicParsing="false" text="Sort">
+                                            <items>
+                                                <MenuItem fx:id="wins" mnemonicParsing="false" text="Wins" />
+                                                <MenuItem fx:id="losses" mnemonicParsing="false" text="Losses" />
+                                                <MenuItem fx:id="rank" mnemonicParsing="false" text="Rank" />
+                                                <MenuItem fx:id="headshot" mnemonicParsing="false" text="Headshot %" />
+                                                <MenuItem fx:id="pRatio" mnemonicParsing="false" text="Win/Loss Ratio" />
+                                                <MenuItem fx:id="tRatio" mnemonicParsing="false" text="Win/Loss Ratio" />
+                                            </items>
+                                        </MenuButton>
+                                        <TextField fx:id="topField" layoutX="243.0" prefHeight="20.0" prefWidth="86.0" promptText="Top #" />
+                                    </children>
+                                </Group>
+                                <TextArea fx:id="mainView" editable="false" layoutX="52.0" layoutY="115.0" prefHeight="260.0" prefWidth="243.0">
+                                    <font>
+                                        <Font name="Consolas" size="12.0" />
+                                    </font></TextArea>
+                                <Label fx:id="viewLabel" layoutX="52.0" layoutY="86.0" text="Label">
+                                    <font>
+                                        <Font size="18.0" />
+                                    </font>
+                                </Label>
+                            </children></AnchorPane>
+                    </content>
+                </ScrollPane>
+                <AnchorPane fx:id="rightPane" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                    <children>
+                        <Label layoutX="3.0" text="Details" textFill="#796f6f">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Label>
+                        <TextArea fx:id="details" editable="false" layoutX="3.0" layoutY="149.0" prefHeight="315.0" prefWidth="181.0" />
+                        <Group fx:id="viewSelector" layoutX="3.0" layoutY="64.0">
+                            <children>
+                                <ComboBox fx:id="playerPicker" onAction="#playerSelected" prefHeight="26.0" prefWidth="118.0" promptText="Players" visible="false" />
+                                <ComboBox fx:id="teamPicker" onAction="#teamSelected" prefHeight="26.0" prefWidth="118.0" promptText="Teams" />
+                                <Button fx:id="toggleView" layoutX="130.0" mnemonicParsing="false" onAction="#toggleDetails" text="Teams" />
+                            </children>
+                        </Group>
+                        <Label fx:id="detailsLabel" layoutX="3.0" layoutY="124.0">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Label>
+                    </children></AnchorPane>
+            </items>
+        </SplitPane>
+        <HBox fx:id="hBox" prefHeight="0.0" prefWidth="200.0" visible="false">
+            <children>
+                <Label fx:id="leftStatus" text="Label" textFill="#e10202" HBox.hgrow="ALWAYS">
+                    <padding>
+                        <Insets left="5.0" />
+                    </padding></Label>
+                <Pane HBox.hgrow="ALWAYS" />
+                <Label fx:id="rightStatus" text="Label" textFill="#3d98ff">
+                    <padding>
+                        <Insets right="5.0" />
+                    </padding></Label>
+            </children>
+        </HBox>
+    </children>
+</VBox>
